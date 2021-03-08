@@ -33,6 +33,7 @@ import WindowSnackbar from './ui/components/WindowSnackbar';
 import { usePhone } from './os/phone/hooks/usePhone';
 import { useTranslation } from 'react-i18next';
 import { useSnackbar } from './ui/hooks/useSnackbar';
+import { useEmailService } from './apps/email/hooks/useEmailService';
 
 function Phone() {
   const { t, i18n } = useTranslation();
@@ -75,6 +76,7 @@ function Phone() {
   usePhotoService();
   useCallService();
   useDialService();
+  useEmailService();
 
   const { modal: callModal } = useCallModal();
   const { bottom, visibility } = usePhoneVisibility();
