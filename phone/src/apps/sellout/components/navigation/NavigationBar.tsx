@@ -2,9 +2,8 @@ import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Link } from 'react-router-dom';
 import { BottomNavigation, BottomNavigationAction } from '@material-ui/core';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHome } from '@fortawesome/free-solid-svg-icons';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
+import HomeIcon from '@material-ui/icons/Home';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -28,11 +27,7 @@ export const NavigationBar = () => {
       showLabels
       className={classes.root}
     >
-      <BottomNavigationAction
-        component={Link}
-        icon={<FontAwesomeIcon icon={faHome} />}
-        to="/sellout"
-      />
+      <BottomNavigationAction component={Link} icon={<HomeIcon />} to="/sellout" />
       <BottomNavigationAction component={Link} icon={<AddCircleIcon />} to="/sellout/new" />
     </BottomNavigation>
   );
