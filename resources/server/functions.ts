@@ -1,7 +1,7 @@
 import { pool } from './db';
 import config from '../utils/config';
 import { mainLogger } from './sv_logger';
-import { Player, Players, PlayersByIdentifier } from './players/sv_players';
+import { getDefaultProfileNames, Player, Players, PlayersByIdentifier } from './players/sv_players';
 
 export function getPlayer(source: number): Player {
   const player = Players.get(source);
@@ -44,6 +44,25 @@ export async function getIdentifierByPhoneNumber(
 }
 
 /**
+ * Return the attached identifier for a given email
+ * @param email The email to return identifier for
+ * @param fetch Whether or not to query the database if a given player is offline
+ **/
+export async function getIdentifierByEmail(email: string, fetch?: boolean): Promise<string | null> {
+  for (const [source, player] of Players) {
+    if (player.getEmail() === email) return player.identifier;
+  }
+  // Whether we fetch from database if not found in online players
+  if (fetch) {
+    const query = `SELECT identifier FROM users WHERE phone_email = ?`;
+    const [results] = await pool.query(query, [email]);
+    // Get identifier from results
+    return (results as { identifier: string }[])[0].identifier;
+  }
+  return null;
+}
+
+/**
  * Returns the player phoneNumber for a passed identifier
  * @param identifier The players phone number
  */
@@ -70,7 +89,7 @@ function getRandomPhoneNumber() {
   return randomNumber;
 }
 
-export async function generatePhoneNumber(identifier: string): Promise<void> {
+export async function generatePhoneNumber(identifier: string): Promise<string> {
   const getQuery = `SELECT phone_number FROM users WHERE identifier = ?`;
   const [results] = await pool.query(getQuery, [identifier]);
   const result = <any[]>results;
@@ -87,8 +106,34 @@ export async function generatePhoneNumber(identifier: string): Promise<void> {
         existingId = false;
       }
     } while (existingId);
-    mainLogger.debug(`Inserting number into Database: ${newNumber}`);
     const query = 'UPDATE users SET phone_number = ? WHERE identifier = ?';
     await pool.query(query, [newNumber, identifier]);
+    mainLogger.debug(`Inserting number into Database: ${newNumber}`);
+    return newNumber;
   }
+  return phoneNumber;
+}
+
+export async function generateEmail(identifier: string): Promise<string> {
+  const getQuery = `SELECT phone_email FROM users WHERE identifier = ?`;
+  const [results] = await pool.query(getQuery, [identifier]);
+  const result = <any[]>results;
+  const email = result[0]?.phone_email;
+
+  if (!email) {
+    const emailUser = await getDefaultProfileNames(identifier);
+
+    if (!emailUser) {
+      throw new Error('Must provide a fullName or phoneNumber option to create an email');
+    }
+
+    const emailProvider = config.email.provider || 'project-error.dev';
+
+    const newEmail = `${emailUser}@${emailProvider}`;
+    const query = 'UPDATE users SET phone_email = ? WHERE identifier = ?';
+    await pool.query(query, [newEmail, identifier]);
+    mainLogger.debug(`Inserting email into Database: ${newEmail}`);
+    return newEmail;
+  }
+  return email;
 }
