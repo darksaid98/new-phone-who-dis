@@ -144,6 +144,10 @@
       "label": "Project Error",
       "value": "projecterror.jpg"
     },
+    "customBackground": {
+      "label": "https://beta.iodine.gg/58d1e.jpeg",
+      "value": "https://beta.iodine.gg/58d1e.jpeg"
+    },
     "frame": {
       "label": "Default",
       "value": "default.png"

@@ -104,7 +104,9 @@ function Phone() {
               id="phone"
               className="PhoneScreen"
               style={{
-                backgroundImage: `url(media/backgrounds/${settings.wallpaper.value})`,
+                backgroundImage: settings.customBackground.value
+                  ? `url(${settings.customBackground.value})`
+                  : `url(media/backgrounds/${settings.wallpaper.value})`,
               }}
             >
               {isPhoneReady ? (

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   ListItem,
   ListItemText,
@@ -10,6 +10,7 @@ import {
   Tooltip,
   Typography,
   Switch,
+  TextField,
 } from '@material-ui/core';
 
 interface ISettingItem {
@@ -103,6 +104,15 @@ export const SettingItemIconAction = ({
           </IconButton>
         </Tooltip>
       </ListItemSecondaryAction>
+    </ListItem>
+  </>
+);
+
+export const SettingItemInput = ({ icon, label, onChange }) => (
+  <>
+    <ListItem divider>
+      <ListItemIcon>{icon}</ListItemIcon>
+      <TextField placeholder="Custom background" value={label} onChange={onChange} />
     </ListItem>
   </>
 );

@@ -12,6 +12,7 @@ import {
   SettingItemIconAction,
   SettingItemSlider,
   SettingSwitch,
+  SettingItemInput,
 } from './SettingItem';
 import { useTranslation } from 'react-i18next';
 import VisibilityOffIcon from '@material-ui/icons/VisibilityOff';
@@ -27,6 +28,7 @@ import {
   FileCopy,
   Book,
   DeleteForever,
+  InsertPhoto,
 } from '@material-ui/icons';
 
 import { ListSubheader } from '@material-ui/core';
@@ -122,6 +124,8 @@ export const SettingsApp = () => {
     });
   };
 
+  const setCustomBackground = () => {};
+
   const [openMenu, closeMenu, ContextMenu, isMenuOpen] = useContextMenu();
   return (
     <AppWrapper>
@@ -192,6 +196,11 @@ export const SettingsApp = () => {
             value={settings.wallpaper.label}
             options={wallpapers}
             onClick={openMenu}
+            icon={<InsertPhoto />}
+          />
+          <SettingItemInput
+            label={settings.customBackground.value}
+            onChange={(e, val) => handleSettingChange('customBackground', val)}
             icon={<Wallpaper />}
           />
           <SettingItem

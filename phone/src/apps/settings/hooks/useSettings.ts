@@ -23,6 +23,7 @@ const settingsSchema: Schema = {
   properties: {
     language: { $ref: '/SettingOption' },
     wallpaper: { $ref: '/SettingOption' },
+    customBackground: { $ref: '/SettingOption' },
     frame: { $ref: '/SettingOption' },
     theme: { $ref: '/SettingOption' },
     zoom: { $ref: '/SettingOption' },
@@ -63,6 +64,7 @@ export function isSettingsSchemaValid(): boolean {
 export interface IPhoneSettings {
   language: SettingOption;
   wallpaper: SettingOption;
+  customBackground: SettingOption;
   frame: SettingOption;
   theme: SettingOption;
   zoom: SettingOption;
