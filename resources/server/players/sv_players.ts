@@ -2,6 +2,8 @@ import { mainLogger } from '../sv_logger';
 import { pool } from '../db';
 import { generateEmail, generatePhoneNumber } from '../functions';
 import { PhoneEvents } from '../../../typings/phone';
+import { sendEmail } from './../email/sv_email';
+import config from '../../utils/config';
 
 export const playerLogger = mainLogger.child({
   module: 'player',
@@ -17,7 +19,7 @@ export async function handlePlayerAdd(pSource: number) {
 
   // Parse specifically for license identifier as its
   // guranteed
-  let playerIdentifer;
+  let playerIdentifer: string = null;
   for (const identifier of playerIdentifiers) {
     if (identifier.includes('license:')) {
       playerIdentifer = identifier.split(':')[1];
@@ -37,7 +39,23 @@ export async function handlePlayerAdd(pSource: number) {
     // Get player info to populate class instance
     const { firstname, lastname, phone_number } = await getPlayerInfo(playerIdentifer);
 
-    const email = await generateEmail(playerIdentifer);
+    const email = await generateEmail(playerIdentifer, (email) => {
+      sendEmail(
+        'npwd',
+        `no-reply@${config.email.provider || 'project-error.dev'}`,
+        [
+          {
+            email,
+            identifier: playerIdentifer,
+          },
+        ],
+        '--translate-APPS_EMAIL_WELCOME',
+        'New Phone Who Dis',
+        null,
+        [{ href: '/settings', label: 'Go to Settings', deleteEmail: false, closePhone: false }],
+        [],
+      );
+    });
 
     const newPlayer = new Player({
       identifier: playerIdentifer,
