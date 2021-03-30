@@ -45,7 +45,7 @@ export async function handlePlayerAdd(pSource: number) {
       playerLogger.error(`Failed to load player information (${pSource})`);
     }
 
-    const email = await generateEmail(playerIdentifer, (email) => {
+    const email = await generateEmail(playerIdentifer, phone_number, (email) => {
       const subject = 'New Phone Who Dis';
       const sender = `no-reply@${config.email.provider || 'project-error.dev'}`;
       const body = '--translate-APPS_EMAIL_WELCOME';
