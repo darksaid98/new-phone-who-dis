@@ -1,11 +1,11 @@
 import { useRecoilState } from 'recoil';
-import { CallProps } from '../../../../../typings/call';
+import { ActiveCall } from '../../../../../typings/call';
 import Nui from '../../nui-events/utils/Nui';
 import { callerState } from './state';
 import { CallEvents } from '../../../../../typings/call';
 
 interface CallHook {
-  call: CallProps;
+  call: ActiveCall;
   setCall: (details: any) => void;
   acceptCall(): void;
   rejectCall(): void;
