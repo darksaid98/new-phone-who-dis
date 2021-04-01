@@ -14,7 +14,7 @@ interface IUseMessages {
   activeMessageGroup: MessageGroup | null;
 }
 
-export default (): IUseMessages => {
+export default function useMessages(): IUseMessages {
   const [messages, setMessages] = useRecoilState<Message[] | null>(messageState.messages);
   const messageGroups = useRecoilValue<MessageGroup[] | null>(messageState.messageGroups);
   const [activeMessageGroup, _setActiveMessageGroup] = useRecoilState<MessageGroup | null>(
@@ -54,4 +54,4 @@ export default (): IUseMessages => {
     activeMessageGroup,
     setActiveMessageGroup,
   };
-};
+}
