@@ -7,9 +7,8 @@ import ShareIcon from '@material-ui/icons/Share';
 import Nui from '../../../../os/nui-events/utils/Nui';
 import { useHistory } from 'react-router-dom';
 import { useQueryParams } from '../../../../common/hooks/useQueryParams';
-import { ICameraPhoto } from '../../hooks/usePhotos';
 import { ShareModal } from './ShareModal';
-import { PhotoEvents } from '../../../../../../typings/photo';
+import { IPhoto, PhotoEvents } from '../../../../../../typings/photo';
 
 export const GalleryModal = () => {
   const classes = useStyles();
@@ -19,10 +18,9 @@ export const GalleryModal = () => {
 
   const [shareOpen, setShareOpen] = useState(null);
 
-  const meta: ICameraPhoto = useMemo(
-    () => ({ id: query.id as string, image: query.image as string }),
-    [query],
-  );
+  const meta: IPhoto = useMemo(() => ({ id: parseInt(query.id), image: query.image as string }), [
+    query,
+  ]);
 
   const _handleClose = () => {
     history.push(referal);

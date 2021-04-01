@@ -5,11 +5,11 @@ import MessageIcon from '@material-ui/icons/Message';
 import { setClipboard } from '../../../../os/phone/hooks/useClipboard';
 
 import useStyles from './modal.styles';
-import { ICameraPhoto } from '../../hooks/usePhotos';
 import { useHistory } from 'react-router-dom';
+import { IPhoto } from '../../../../../../typings/photo';
 
 interface IShareModalProps {
-  meta: ICameraPhoto;
+  meta: IPhoto;
   referal: string;
   onClose(): void;
 }
