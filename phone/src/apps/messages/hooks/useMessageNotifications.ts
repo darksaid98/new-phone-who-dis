@@ -1,4 +1,3 @@
-import { useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { matchPath, useHistory } from 'react-router-dom';
 import { useApp } from '../../../os/apps/hooks/useApps';

@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Box, List } from '@material-ui/core';
-import { MessageEvents, MessageGroup } from '../../../../../../typings/messages';
-import Nui from '../../../../os/nui-events/utils/Nui';
+import { MessageGroup } from '../../../../../../typings/messages';
 import useMessages from '../../hooks/useMessages';
 import MessageGroupItem from './MessageGroupItem';
 import useStyles from './list.styles';

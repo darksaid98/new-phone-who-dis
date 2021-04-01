@@ -5,7 +5,6 @@ import { Route } from 'react-router-dom';
 import { CallModal } from './os/call/components/CallModal';
 import { HomeApp } from './apps/home/components/Home';
 import { Box, Paper, Slide, Typography } from '@material-ui/core';
-import { useKeyboardService } from './os/keyboard/hooks/useKeyboardService';
 import { NotificationBar } from './os/notifications/components/NotificationBar';
 import { Navigation } from './os/navigation-bar/components/Navigation';
 import { useNuiService } from './os/nui-events/hooks/useNuiService';
@@ -63,7 +62,6 @@ function Phone() {
   }, []);
 
   useNuiService();
-  useKeyboardService();
   usePhoneService();
   useSimcardService();
   useContactsService();

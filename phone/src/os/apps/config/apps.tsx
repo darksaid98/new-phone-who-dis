@@ -1,13 +1,7 @@
 import React from 'react';
 import { blue, common, grey, purple } from '@material-ui/core/colors';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-  faAd,
-  faPlaneArrival,
-  faPhoneAlt,
-  faWonSign,
-  faStickyNote,
-} from '@fortawesome/free-solid-svg-icons';
+import { faAd, faPlaneArrival, faPhoneAlt, faStickyNote } from '@fortawesome/free-solid-svg-icons';
 import { faTwitter } from '@fortawesome/free-brands-svg-icons';
 
 import ContactsIcon from '@material-ui/icons/Contacts';
@@ -20,7 +14,6 @@ import { DialerApp } from '../../../apps/dialer/components/DialerApp';
 import { ContactsApp } from '../../../apps/contacts/components/ContactsApp';
 import { CalculatorApp } from '../../../apps/calculator/components/CalculatorApp';
 import { SettingsApp } from '../../../apps/settings/components/SettingsApp';
-import { BankApp } from '../../../apps/bank/components/BankApp';
 import { MessagesApp } from '../../../apps/messages/components/MessagesApp';
 import { MatchApp } from '../../../apps/match/components/MatchApp';
 import { TwitterApp } from '../../../apps/twitter/components/TwitterApp';

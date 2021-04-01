@@ -10,10 +10,8 @@ import {
   Tooltip,
   Typography,
   Switch,
-  TextField,
 } from '@material-ui/core';
 import CreateIcon from '@material-ui/icons/Create';
-import { PictureThumbnail } from '../../../ui/components/PictureThumbnail';
 
 interface ISettingItem {
   options?: any;

@@ -26,7 +26,7 @@ function getParams(event, data): [RequestInfo, RequestInit] {
   ];
 }
 
-export default {
+const NuiUtils = {
   async send(event: any, data = {}) {
     return fetch(...getParams(event, data));
   },
@@ -34,3 +34,5 @@ export default {
     return abortableFetch(...getParams(event, data));
   },
 };
+
+export default NuiUtils;

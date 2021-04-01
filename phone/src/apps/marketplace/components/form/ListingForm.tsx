@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { makeStyles, Button, TextField, Typography } from '@material-ui/core';
+import { makeStyles, Button, TextField } from '@material-ui/core';
 import Nui from '../../../../os/nui-events/utils/Nui';
 import { MarketplaceEvents } from '../../../../../../typings/marketplace';
 import { useSnackbar } from '../../../../ui/hooks/useSnackbar';
